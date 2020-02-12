@@ -5,10 +5,7 @@
 import streamlit as st
 import pandas as pd
 import numpy as np
-import plotly.express as px
-import seaborn as sns
 import matplotlib.pyplot as plt
-import plotly.graph_objects as go
 
 
 
@@ -17,38 +14,6 @@ import sklearn.linear_model as lm
 from sklearn.metrics import mean_squared_error
 from sklearn.metrics import explained_variance_score
 
-#lasso regression
-from sklearn import linear_model
-
-#f_regression (feature selection)
-from sklearn.feature_selection import f_regression
-from sklearn.feature_selection import SelectKBest
-
-# recursive feature selection (feature selection)
-from sklearn.feature_selection import RFE
-
-import statsmodels.api as sm
-from statsmodels.formula.api import ols
-
-#for validating your classification model
-from sklearn.model_selection import train_test_split
-from sklearn.model_selection import cross_val_score
-from sklearn import metrics
-from sklearn.metrics import roc_curve, auc
-from sklearn.metrics import roc_auc_score
-
-# feature selection
-from sklearn.feature_selection import RFE
-from sklearn.ensemble import ExtraTreesClassifier
-from sklearn.feature_selection import SelectKBest
-from sklearn.feature_selection import chi2
-
-# grid search
-from sklearn.model_selection import GridSearchCV
-
-# 
-import statsmodels.api as sm
-from statsmodels.stats.outliers_influence import variance_inflation_factor
 from collections import deque
 
 st.title('NBA Net Rating Machine')
