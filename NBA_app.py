@@ -132,6 +132,7 @@ if(player1 != '2020 NBA Players' and player2 != '2020 NBA Players' and player3 !
     else:
         st.warning("The predicted Net Rating for this lineup is " + string +".")
 
+st.markdown('_**Poor Lineups:** Net Rating **< 0** | **Average Lineups:** Net Rating **> 0** | **Good Lineups:** Net Rating **> 5** | **Excellent Lineups:** Net Rating **> 10**_')
 st.markdown('_Presented by Neel Ganta._')
 # st.sidebar.markdown()
 
