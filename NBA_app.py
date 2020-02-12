@@ -1,6 +1,3 @@
-# Credits: 
-# https://datasciencechalktalk.com/2019/10/22/building-machine-learning-apps-with-streamlit/
-# https://towardsdatascience.com/streamlit-101-an-in-depth-introduction-fc8aad9492f2
 
 import streamlit as st
 import pandas as pd
@@ -34,11 +31,9 @@ from collections import deque
 st.title('NBA Net Rating Machine')
 st.markdown('_Please see left sidebar for more details._')
 
-# currentStats = pd.read_csv('https://raw.githubusercontent.com/neelganta/neel_project/master/2020Stats.csv') 
 currentStats = pd.read_csv('https://raw.githubusercontent.com/neelganta/neel_project/master/updated2020.csv') 
 regModel = pd.read_csv('https://raw.githubusercontent.com/neelganta/neel_project/master/githubRegression.csv')
 regModel = regModel.fillna(0)
-# regModel = regModel.drop(columns=['Unnamed: 0'])
 
 y = regModel['NET_RATING'] 
 X = regModel.drop(['NET_RATING'], axis =1)
@@ -53,14 +48,6 @@ players= deque(players)
 players.appendleft('2020 NBA Players') 
 players = list(players) 
 
-# player1 = 'LeBron James, PG, LAL'
-# player2 = 'James Harden, SG, HOU'
-# player3 = 'Kawhi Leonard, SF, LAC'
-# player4 = 'Giannis Antentokounmpo, PF, MIL'
-# player5 = 'Joel Embiid, C, PHI'
-
-# playerlist = [player1, player2, player3, player4, player5]
-
 player1 = st.selectbox('Select first player:', players)
 player2 = st.selectbox('Select second player:', players)
 player3 = st.selectbox('Select third player:', players)
@@ -71,7 +58,8 @@ player5 = st.selectbox('Select fifth player:', players)
 playerlist = [player1, player2, player3, player4, player5]
 
 # playerdict = st.multiselect("Select 5 players for your lineup: ", players)
-if(player1 != '2020 NBA Players'):
+
+if(player1 != '2020 NBA Players' and player2 != '2020 NBA Players' and player3 != '2020 NBA Players' and player4 != '2020 NBA Players' and player5 != '2020 NBA Players'):
     userdf = pd.DataFrame(playerlist)
     userdf['Player'] = userdf[0]
 
