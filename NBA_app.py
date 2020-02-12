@@ -130,7 +130,7 @@ if(player1 != '2020 NBA Players' and player2 != '2020 NBA Players' and player3 !
     elif (avg > 10): 
         st.success("The predicted Net Rating for this lineup is " + string +".")
     else:
-        st.write("The predicted Net Rating for this lineup is " + string +".")
+        st.warning("The predicted Net Rating for this lineup is " + string +".")
 
 st.markdown('_Presented by Neel Ganta._')
 # st.sidebar.markdown()
