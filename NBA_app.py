@@ -38,6 +38,12 @@ players.appendleft('2020 NBA Players')
 players = list(players) 
 
 
+player1 = 'LeBron James, PG, LAL'
+player2 = 'James Harden, SG, HOU'
+player3 = 'Kawhi Leonard, SF, LAC'
+player4 = 'Giannis Antentokounmpo, PF, MIL'
+player5 = 'Joel Embiid, C, PHI'
+
 player1 = st.selectbox('Select first player:', players)
 player2 = st.selectbox('Select second player:', players)
 player3 = st.selectbox('Select third player:', players)
