@@ -1,1 +1,1 @@
-web: sh setup.sh && run streamlit run NBA_app.py
+web: sh setup.sh && streamlit run NBA_app.py
