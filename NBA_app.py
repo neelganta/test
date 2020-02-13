@@ -2,12 +2,6 @@
 import streamlit as st
 import pandas as pd
 import numpy as np
-# import plotly.express as px
-# import seaborn as sns
-# import matplotlib.pyplot as plt
-# import plotly.graph_objects as go
-
-
 
 #regression packages
 import sklearn.linear_model as lm
@@ -28,12 +22,15 @@ from sklearn.model_selection import GridSearchCV
 
 from collections import deque
 
-st.title('NBA Lineup Machine')
+st.title('All-Time NBA Lineup Machine')
+# st.title('NBA Lineup Machine')
 st.markdown('_Please see left sidebar for more details._')
 
 currentStats = pd.read_csv('https://raw.githubusercontent.com/neelganta/neel_project/master/alltimeDynasty.csv') #Dynasty
+# currentStats = pd.read_csv('https://raw.githubusercontent.com/neelganta/neel_project/master/updated2020.csv') #Current
 regModel = pd.read_csv('https://raw.githubusercontent.com/neelganta/neel_project/master/githubRegression.csv')
 regModel = regModel.fillna(0)
+# regModel = regModel.drop(columns=['Unnamed: 0'])
 
 y = regModel['NET_RATING'] 
 X = regModel.drop(['NET_RATING'], axis =1)
@@ -45,8 +42,10 @@ model1_y = model1.predict(X)
 players = []
 players = currentStats['Player']
 players= deque(players) 
-players.appendleft('2020 NBA Players') 
+players.appendleft('1980-Present NBA Players') 
+# players.appendleft('2020 NBA Players') #Current
 players = list(players) 
+
 
 player1 = st.selectbox('Select first player:', players)
 player2 = st.selectbox('Select second player:', players)
@@ -57,43 +56,16 @@ player5 = st.selectbox('Select fifth player:', players)
 
 playerlist = [player1, player2, player3, player4, player5]
 
-# playerdict = st.multiselect("Select 5 players for your lineup: ", players)
+# playerlist = st.multiselect("Select 5 players for your lineup: ", players)
 
-if(player1 != '2020 NBA Players' and player2 != '2020 NBA Players' and player3 != '2020 NBA Players' and player4 != '2020 NBA Players' and player5 != '2020 NBA Players'):
-    userdf = pd.DataFrame(playerlist)
-    userdf['Player'] = userdf[0]
 
-    merged = userdf.merge(right = currentStats, on ='Player')
-    merged['index'] = merged[0]
-    merged['index'] = 'lineup'
-    merged.set_index('index')
-    merged.drop(['Player'], axis =1)
-    dictionary = merged.groupby('index').apply(lambda dfg: dfg.drop('index', axis=1).to_dict(orient='list')).to_dict()
-    converted = pd.DataFrame.from_dict(dictionary, orient= 'index')
-    new_df = pd.concat([pd.DataFrame(col.tolist()).add_prefix(i) 
-                        for i,col in converted.items()],axis = 1)
+with st.spinner('Predicting...'):
 
-    new_df.index = converted.index
-    new_df = new_df[new_df.columns.drop(list(new_df.filter(regex='00')))]
-    new_df = new_df[new_df.columns.drop(list(new_df.filter(regex='01')))]
-    new_df = new_df[new_df.columns.drop(list(new_df.filter(regex='02')))]
-    new_df = new_df[new_df.columns.drop(list(new_df.filter(regex='03')))]
-    new_df = new_df[new_df.columns.drop(list(new_df.filter(regex='04')))]
-    new_df = new_df[new_df.columns.drop(list(new_df.filter(regex='5')))]
-    new_df = new_df[new_df.columns.drop(list(new_df.filter(regex='6')))]
+    if(player1 != '1980-Present NBA Players' and player2 != '1980-Present NBA Players' and player3 != '1980-Present NBA Players' and player4 != '1980-Present NBA Players' and player5 != '1980-Present NBA Players'):
 
-    st.write('Lineup DataFrame:')
-    st.write(new_df)
-    st.write('           ')
-    st.write('           ')
-    st.write('           ')
-    import itertools
-    x = []
-    average = []
-    t=list(itertools.permutations(playerlist,len(playerlist)))
-    for i in range(0,len(t)):
-        x = t[i]
-        userdf = pd.DataFrame(x)
+    # if(player1 != '2020 NBA Players' and player2 != '2020 NBA Players' and player3 != '2020 NBA Players' and player4 != '2020 NBA Players' and player5 != '2020 NBA Players'): #current
+    # if(len(playerlist) > 4 and len(playerlist) < 6):
+        userdf = pd.DataFrame(playerlist)
         userdf['Player'] = userdf[0]
 
         merged = userdf.merge(right = currentStats, on ='Player')
@@ -114,30 +86,66 @@ if(player1 != '2020 NBA Players' and player2 != '2020 NBA Players' and player3 !
         new_df = new_df[new_df.columns.drop(list(new_df.filter(regex='04')))]
         new_df = new_df[new_df.columns.drop(list(new_df.filter(regex='5')))]
         new_df = new_df[new_df.columns.drop(list(new_df.filter(regex='6')))]
-        new_df = new_df[new_df.columns.drop(list(new_df.filter(regex='Player')))]
-        user_pred = model1.predict(new_df)
-        num = int(user_pred)
-        average.append(num)
+
+        st.write('Lineup DataFrame:')
+        st.write(new_df)
+        st.write('           ')
+        st.write('           ')
+        st.write('           ')
+        import itertools
+        x = []
+        average = []
+        t=list(itertools.permutations(playerlist,len(playerlist)))
+        for i in range(0,len(t)):
+            x = t[i]
+            userdf = pd.DataFrame(x)
+            userdf['Player'] = userdf[0]
+
+            merged = userdf.merge(right = currentStats, on ='Player')
+            merged['index'] = merged[0]
+            merged['index'] = 'lineup'
+            merged.set_index('index')
+            merged.drop(['Player'], axis =1)
+            dictionary = merged.groupby('index').apply(lambda dfg: dfg.drop('index', axis=1).to_dict(orient='list')).to_dict()
+            converted = pd.DataFrame.from_dict(dictionary, orient= 'index')
+            new_df = pd.concat([pd.DataFrame(col.tolist()).add_prefix(i) 
+                                for i,col in converted.items()],axis = 1)
+
+            new_df.index = converted.index
+            new_df = new_df[new_df.columns.drop(list(new_df.filter(regex='00')))]
+            new_df = new_df[new_df.columns.drop(list(new_df.filter(regex='01')))]
+            new_df = new_df[new_df.columns.drop(list(new_df.filter(regex='02')))]
+            new_df = new_df[new_df.columns.drop(list(new_df.filter(regex='03')))]
+            new_df = new_df[new_df.columns.drop(list(new_df.filter(regex='04')))]
+            new_df = new_df[new_df.columns.drop(list(new_df.filter(regex='5')))]
+            new_df = new_df[new_df.columns.drop(list(new_df.filter(regex='6')))]
+            new_df = new_df[new_df.columns.drop(list(new_df.filter(regex='Player')))]
+            user_pred = model1.predict(new_df)
+            num = int(user_pred)
+            average.append(num)
 
 
-    avg = sum(average) / len(average)
+        avg = sum(average) / len(average)
 
-    string = str(round(avg, 2))
-
-
-    if(avg < 0):
-        st.error("The predicted Net Rating for this lineup is " + string +".")
-    elif (avg > 10): 
-        st.success("The predicted Net Rating for this lineup is " + string +".")
-    else:
-        st.warning("The predicted Net Rating for this lineup is " + string +".")
+        string = str(round(avg, 2))
 
 
+
+        if(avg < 0):
+            st.error("The predicted Net Rating for this lineup is " + string +".")
+        elif (avg > 10): 
+            st.success("The predicted Net Rating for this lineup is " + string +".")
+        else:
+            st.warning("The predicted Net Rating for this lineup is " + string +".")
+
+
+# st.markdown('_Currently the best lineup in the NBA (by at least 100 minutes played) is Paul/Gallinari/Schroder/Adams/Gilgeous-Alexander of the OKC Thunder. The NBA Net Rating Machine predicts this lineup with a Net Rating of 16.7. The bar has been set, can you beat it?_')
 st.markdown('_Presented by Neel Ganta._')
 # st.sidebar.markdown()
 
-st.sidebar.markdown('**ABOUT THE NBA LINEUP MACHINE:**  The _NBA Lineup Machine_ was first incepted roughly one year ago while Neel Ganta was browsing through https://stats.nba.com/lineups/advanced/. He discovered a large set of lineup data, and a current lineup problem in the NBA. Should teams go small? Three shooters? Five? How can we see what our team would look like with a player _before_ trading for him? Seeing a problem and no publicly available solution, Neel decided to create what could be the next big GM tool. Please enjoy the _NBA Lineup Machine_ which allows you to input **any** five players in the NBA, and predicts an overall Net Rating for the lineup.')
-st.sidebar.markdown('_**Poor: ** Net Rating **< 0** | **Average:** Net Rating **> 0** | **Good:** Net Rating **> 5** | **Excellent:** Net Rating **> 10**_')
+# st.sidebar.markdown('**ABOUT THE NBA LINEUP MACHINE:**  The _NBA Lineup Machine_ was first incepted roughly one year ago while Neel Ganta was browsing through https://stats.nba.com/lineups/advanced/. He discovered a large set of lineup data, and a current lineup problem in the NBA. Should teams go small? Three shooters? Five? How can we see what our team would look like with a player _before_ trading for him? Seeing a problem and no publicly available solution, Neel decided to create what could be the next big GM tool. Please enjoy the _NBA Lineup Machine_ which allows you to input **any** five players in the NBA, and predicts an overall Net Rating for the lineup.')
+st.sidebar.markdown('**ABOUT THE ALL-TIME NBA LINEUP MACHINE:**  After creating the _[NBA Lineup Machine](https://nba-lineup-machine.herokuapp.com)_, which allows the user to predict the Net Rating of any lineup possible in the current NBA, Neel Ganta went about to answer a different set of questions. The endless debates of who would really make the best lineup of all time can finally put to rest. The All-Time NBA Lineup Machine contains data for _every_ player since the three-point line was introduced in 1980. What if we swapped ‘85 Larry Bird for Paul Pierce on the ‘08 Celtics? What if we made a lineup of the best big men ever? What would a lineup with Kobe, MJ, and Lebron look like? Can _you_ create the best lineup ever? Please enjoy the _All-Time NBA Lineup Machine_ which allows you to input **any** five players in the past **40 years** of the NBA, and predicts an overall Net Rating in modern terms for the lineup.')
+st.sidebar.markdown('_**Poor: ** Net Rating **< 0** | **Average:** Net Rating **> 0** | **Good:** Net Rating **> 5** | **Excellent:** Net Rating **> 10** | **Hall of Fame:** Net Rating **> 20**_')
 st.sidebar.markdown('**ABOUT NEEL GANTA**: Neel Ganta is graduating with a Finance and Computer Science degree from Kansas State, and completed internships at the Federal Reserve, JPMorgan Chase, the Boston Celtics, and currently serves as an analytics consultant for Brad Underwood, Head Basketball Coach at the University of Illinois. Neel grew up using his passion for basketball to connect with others, and can be found playing 5 on 5 in his local city league tournament or rec center. When he is taking a break from practicing dunks and _NBA_ three pointers, he is sharpening his machine learning skills and seeking new avenues to provide basketball insights.')
 # st.sidebar.video('https://youtu.be/-OoM5XvLo20')
 st.sidebar.markdown('**The Neel Ganta Fighting Illini Story:**')
