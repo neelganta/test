@@ -31,7 +31,7 @@ from collections import deque
 st.title('NBA Lineup Machine')
 st.markdown('_Please see left sidebar for more details._')
 
-currentStats = pd.read_csv('https://raw.githubusercontent.com/neelganta/neel_project/master/updated2020.csv') 
+currentStats = pd.read_csv('https://raw.githubusercontent.com/neelganta/neel_project/master/alltimeDynasty.csv') #Dynasty
 regModel = pd.read_csv('https://raw.githubusercontent.com/neelganta/neel_project/master/githubRegression.csv')
 regModel = regModel.fillna(0)
 
@@ -138,7 +138,7 @@ st.markdown('_Presented by Neel Ganta._')
 
 st.sidebar.markdown('**ABOUT THE NBA LINEUP MACHINE:**  The _NBA Lineup Machine_ was first incepted roughly one year ago while Neel Ganta was browsing through https://stats.nba.com/lineups/advanced/. He discovered a large set of lineup data, and a current lineup problem in the NBA. Should teams go small? Three shooters? Five? How can we see what our team would look like with a player _before_ trading for him? Seeing a problem and no publicly available solution, Neel decided to create what could be the next big GM tool. Please enjoy the _NBA Lineup Machine_ which allows you to input **any** five players in the NBA, and predicts an overall Net Rating for the lineup.')
 st.sidebar.markdown('_**Poor: ** Net Rating **< 0** | **Average:** Net Rating **> 0** | **Good:** Net Rating **> 5** | **Excellent:** Net Rating **> 10**_')
-st.sidebar.markdown('**ABOUT NEEL GANTA**: Neel Ganta is graduating with a Finance and Computer Science degree from Kansas State, and completed internships at the Federal Reserve, JPMorgan Chase, the Boston Celtics, and currently sereves as an analytics consultant for Brad Underwood, Head Basketball Coach at University of Illinois. Neel grew up using his passion for basketball to connect with others, and can be found playing 5 on 5 in his local city league tournament or rec center. When he is taking a break from practicing dunks and _NBA_ three pointers, he is sharpening his machine learning skills and seeking new avenues to provide basketball insights.')
+st.sidebar.markdown('**ABOUT NEEL GANTA**: Neel Ganta is graduating with a Finance and Computer Science degree from Kansas State, and completed internships at the Federal Reserve, JPMorgan Chase, the Boston Celtics, and currently serves as an analytics consultant for Brad Underwood, Head Basketball Coach at the University of Illinois. Neel grew up using his passion for basketball to connect with others, and can be found playing 5 on 5 in his local city league tournament or rec center. When he is taking a break from practicing dunks and _NBA_ three pointers, he is sharpening his machine learning skills and seeking new avenues to provide basketball insights.')
 # st.sidebar.video('https://youtu.be/-OoM5XvLo20')
 st.sidebar.markdown('**The Neel Ganta Fighting Illini Story:**')
 st.sidebar.video(data = 'https://www.youtube.com/watch?v=Zfw0AevYR-4')
