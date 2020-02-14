@@ -59,8 +59,8 @@ playerlist = [player1, player2, player3, player4, player5]
 # playerlist = st.multiselect("Select 5 players for your lineup: ", players)
 
 
-with st.spinner('Predicting...'):
 
+with st.spinner('Loading...'):
     if(player1 != '1980-Present NBA Players' and player2 != '1980-Present NBA Players' and player3 != '1980-Present NBA Players' and player4 != '1980-Present NBA Players' and player5 != '1980-Present NBA Players'):
 
     # if(player1 != '2020 NBA Players' and player2 != '2020 NBA Players' and player3 != '2020 NBA Players' and player4 != '2020 NBA Players' and player5 != '2020 NBA Players'): #current
@@ -89,9 +89,8 @@ with st.spinner('Predicting...'):
 
         st.write('Lineup DataFrame:')
         st.write(new_df)
-        st.write('           ')
-        st.write('           ')
-        st.write('           ')
+
+
         import itertools
         x = []
         average = []
@@ -125,18 +124,26 @@ with st.spinner('Predicting...'):
             average.append(num)
 
 
-        avg = sum(average) / len(average)
+        
+        if st.button('PREDICT'):
 
-        string = str(round(avg, 2))
+                # with st.spinner('Predicting...'):
+                #     import time 
+                #     time.sleep(3)
 
+                    avg = sum(average) / len(average)
 
+                    string = str(round(avg, 2))
 
-        if(avg < 0):
-            st.error("The predicted Net Rating for this lineup is " + string +".")
-        elif (avg > 10): 
-            st.success("The predicted Net Rating for this lineup is " + string +".")
-        else:
-            st.warning("The predicted Net Rating for this lineup is " + string +".")
+                    if(avg < 0):
+                        st.error("The predicted Net Rating for this lineup is " + string +".")
+                    elif (avg > 10 and avg < 20): 
+                        st.success("The predicted Net Rating for this lineup is " + string +".")
+                    elif (avg > 20):
+                        st.success("The predicted Net Rating for this lineup is " + string +".")
+                        st.balloons()
+                    else:
+                        st.warning("The predicted Net Rating for this lineup is " + string +".")
 
 
 # st.markdown('_Currently the best lineup in the NBA (by at least 100 minutes played) is Paul/Gallinari/Schroder/Adams/Gilgeous-Alexander of the OKC Thunder. The NBA Net Rating Machine predicts this lineup with a Net Rating of 16.7. The bar has been set, can you beat it?_')
@@ -144,8 +151,10 @@ st.markdown('_Presented by Neel Ganta._')
 # st.sidebar.markdown()
 st.write()
 # st.sidebar.markdown('**ABOUT THE NBA LINEUP MACHINE:**  The _NBA Lineup Machine_ was first incepted roughly one year ago while Neel Ganta was browsing through https://stats.nba.com/lineups/advanced/. He discovered a large set of lineup data, and a current lineup problem in the NBA. Should teams go small? Three shooters? Five? How can we see what our team would look like with a player _before_ trading for him? Seeing a problem and no publicly available solution, Neel decided to create what could be the next big GM tool. Please enjoy the _NBA Lineup Machine_ which allows you to input **any** five players in the NBA, and predicts an overall Net Rating for the lineup.')
-st.sidebar.markdown('**ABOUT THE ALL-TIME NBA LINEUP MACHINE:**  After creating the _[NBA Lineup Machine](https://nba-lineup-machine.herokuapp.com)_, which allows the user to predict the Net Rating of any lineup possible in the current NBA, Neel Ganta went about to answer a different set of questions. The endless debates of who would really make the best lineup of all time can finally be put to rest. The _All-Time NBA Lineup Machine_ contains data for _every_ player since the three-point line was introduced in 1980. What if we swapped ‘85 Larry Bird for Paul Pierce on the ‘08 Celtics? What if we made a lineup of the best big men ever? What would a lineup with Kobe, MJ, and Lebron look like? Can _you_ create the best lineup ever? Please enjoy the _All-Time NBA Lineup Machine_ which allows you to input **any** five players in the past **40 years** of the NBA, and predicts an overall Net Rating in modern terms for the lineup.')
+st.sidebar.markdown('**ABOUT THE ALL-TIME NBA LINEUP MACHINE:**  After creating the _[NBA Lineup Machine](https://nba-lineup-machine.herokuapp.com)_, which allows the user to predict the Net Rating of any lineup possible in the current NBA, Neel Ganta went about to answer a different set of questions. The endless debates of who would really make the best lineup of all time can finally be put to rest. The _All-Time NBA Lineup Machine_ contains data for _every_ player since the three-point line was introduced in 1980. What if we swapped ‘85 Larry Bird for Paul Pierce on the ‘08 Celtics? What if we made a lineup of the best big men ever? What would a lineup with Kobe, MJ, and Lebron look like? Can _you_ create the best lineup ever? Please enjoy the _All-Time NBA Lineup Machine_ which allows you to input **any** five players in **any** of the past **40 years** of the NBA, and utilizes a machine learning algorithm to predict an overall Net Rating for the lineup in modern terms.')
 st.sidebar.markdown('_**Poor: ** Net Rating **< 0** | **Average:** Net Rating **> 0** | **Good:** Net Rating **> 5** | **Excellent:** Net Rating **> 10** | **Hall of Fame:** Net Rating **> 20**_')
+st.sidebar.markdown('_Players, teams, and positions are searchable in the drop down selectors. For example: type "2012 to find all players in the year 2012. Type "CLE" to find all Cavaliers. Type "PG" to find all point guards. Type "James" to find all players with James in their name_')
+st.sidebar.markdown('_An asterisk by a player name deontes a hall of fame inductee_')
 st.sidebar.markdown('**ABOUT NEEL GANTA**: Neel Ganta is graduating with a Finance and Computer Science degree from Kansas State, and completed internships at the Federal Reserve, JPMorgan Chase, the Boston Celtics, and currently serves as an analytics consultant for Brad Underwood, Head Basketball Coach at the University of Illinois. Neel grew up using his passion for basketball to connect with others, and can be found playing 5 on 5 in his local city league tournament or rec center. When he is taking a break from practicing dunks and _NBA_ three pointers, he is sharpening his machine learning skills and seeking new avenues to provide basketball insights.')
 # st.sidebar.video('https://youtu.be/-OoM5XvLo20')
 st.sidebar.markdown('**The Neel Ganta Fighting Illini Story:**')
