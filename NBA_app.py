@@ -47,11 +47,11 @@ players.appendleft('1980-Present NBA Players')
 players = list(players) 
 
 
-player1 = st.selectbox('Select first player: (Type "BOS" to find all Celtics)', players)
-player2 = st.selectbox('Select second player: (Type "PG" to find all Point Guards)', players)
-player3 = st.selectbox('Select third player: (Type "James" to find all players with the name James)', players)
-player4 = st.selectbox('Select fourth player: (Type "MVP" to find all MVP players.)', players)
-player5 = st.selectbox('Select fifth player: (Type "*" to find all Hall of Fame inductees.)', players)
+player1 = st.selectbox('Select first player: (Example: Type "BOS" to find all Celtics)', players)
+player2 = st.selectbox('Select second player: (Example: Type "PG" to find all Point Guards)', players)
+player3 = st.selectbox('Select third player: (Example: Type "James" to find all players with the name James)', players)
+player4 = st.selectbox('Select fourth player: (Example: Type "MVP" to find all MVP players.)', players)
+player5 = st.selectbox('Select fifth player: (Example: Type "*" to find all Hall of Fame inductees.)', players)
 
 
 playerlist = [player1, player2, player3, player4, player5]
