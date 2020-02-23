@@ -142,7 +142,7 @@ if(player1 != '1980-Present NBA Players' and player2 != '1980-Present NBA Player
             new_df = new_df[new_df.columns.drop(list(new_df.filter(regex='5')))]
             new_df = new_df[new_df.columns.drop(list(new_df.filter(regex='6')))]
             new_df = new_df[new_df.columns.drop(list(new_df.filter(regex='Player')))]
-            new_df = new_df[new_df.columns.drop(list(new_df.filter(regex='Salary')))]
+#             new_df = new_df[new_df.columns.drop(list(new_df.filter(regex='Salary')))]
             user_pred = model1.predict(new_df)
             num = int(user_pred)
             average.append(num)
