@@ -26,7 +26,7 @@ st.title('All-Time NBA Lineup Machine')
 # st.title('NBA Lineup Machine')
 st.markdown('_Please see left sidebar for more details._')
 
-currentStats = pd.read_csv('https://raw.githubusercontent.com/neelganta/neel_project/master/alltimebest1.csv') #Dynasty
+currentStats = pd.read_csv('https://raw.githubusercontent.com/neelganta/neel_project/master/fixedAllTime.csv') #Dynasty
 # currentStats = pd.read_csv('https://raw.githubusercontent.com/neelganta/neel_project/master/2020stats_salary.csv') #Current
 regModel = pd.read_csv('https://raw.githubusercontent.com/neelganta/neel_project/master/githubRegression.csv')
 regModel = regModel.fillna(0)
