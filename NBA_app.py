@@ -173,11 +173,11 @@ if(player1 != '1980-Present NBA Players' and player2 != '1980-Present NBA Player
 
 
 
-st.video(data = 'https://www.youtube.com/watch?v=QrmqLajdJkA&feature=youtu.be')
+st.video(data = 'https://www.youtube.com/watch?v=le3cMnQ7_74&feature=youtu.be')
 # st.markdown('_Currently the best lineup in the NBA (by at least 100 minutes played) is Paul/Gallinari/Schroder/Adams/Gilgeous-Alexander of the OKC Thunder. The NBA Net Rating Machine predicts this lineup with a Net Rating of 16.7. The bar has been set, can you beat it?_')
 st.markdown('_Presented by Neel Ganta._')
 
-st.sidebar.video(data = 'https://www.youtube.com/watch?v=QrmqLajdJkA&feature=youtu.be')
+st.sidebar.video(data = 'https://www.youtube.com/watch?v=le3cMnQ7_74&feature=youtu.be')
 st.sidebar.markdown('**ABOUT THE ALL-TIME NBA LINEUP MACHINE:**  After creating the _[NBA Lineup Machine](https://nba-lineup-machine.herokuapp.com)_, which allows the user to predict the Net Rating of any lineup possible in the current NBA, Neel Ganta went about to answer a different set of questions. The endless debates of who would really make the best lineup of all time can finally be put to rest. The _**All-Time NBA Lineup Machine**_ contains data for _**every**_ player since the three-point line was introduced in 1980. What if we swapped ‘85 Larry Bird for Paul Pierce on the ‘08 Celtics? What if we made a lineup of the best big men ever? What would a lineup with Kobe, MJ, and Lebron look like? Can _**you**_ create the best lineup ever? Please enjoy the _All-Time NBA Lineup Machine_ which allows you to input **any** five players in **any** of the past **40 years** of the NBA, and utilizes a machine learning algorithm to predict an overall Net Rating for the lineup in modern terms.')
 st.sidebar.markdown('_**Poor: ** Net Rating **< 0** | **Average:** Net Rating **> 0** | **Good:** Net Rating **> 5** | **Excellent:** Net Rating **> 10** | **Hall of Fame:** Net Rating **> 20**_')
 st.sidebar.markdown('_Players, teams, and positions are searchable in the drop down selectors. For example: type "2012 to find all players in the year 2012. Type "CLE" to find all Cavaliers. Type "PG" to find all point guards. Type "James" to find all players with James in their name. Type "MVP" to find all MVPs from each year._')
